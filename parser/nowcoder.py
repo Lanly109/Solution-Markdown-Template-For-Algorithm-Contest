@@ -4,7 +4,7 @@ class Nowcoder(BaseParser):
     
     @property
     def code_path(self) -> str:
-        return "/Users/lanly/Documents/Code/OJ/nowcoder/contests"
+        return "code/nowcoder/contests"
 
     @property
     def name(self) -> str:

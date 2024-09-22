@@ -4,12 +4,11 @@ class Codeforces(BaseParser):
     
     @property
     def code_path(self) -> str:
-        return "/Users/lanly/Documents/Code/OJ/cf/" + ("contest" if len(self.contest_id) <= 4 else "gym")
+        return "code/cf/" + ("contest" if len(self.contest_id) <= 4 else "gym")
 
     @property
     def request_cookie(self): # 有时候有cloudflare，可以F12里的cookie获取这个字段绕过
         return {
-            "RCPC": "32209d40519fff5e97617e41000f0e48"
         }
 
     @property

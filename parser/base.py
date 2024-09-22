@@ -78,6 +78,21 @@ date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 
 '''
 
+    def brief(self, problem_num: int) -> str:
+        head = '''<details>
+  <summary>省流版</summary>
+
+'''
+        tail = '''
+
+</details>
+<br>
+'''
+
+        mid = '\n'.join([f"- {chr(65+i)}. <++>" for i in range(problem_num)])
+        
+        return head + mid + tail
+
     def get_problem(self) -> list:
         table_node = self.soup.find_all("table", class_=self.problem_table)
         trs = table_node[0].find_all("tr")
@@ -99,11 +114,13 @@ date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
     def start(self, url: str):
         self.url = url
         res = self.request(self.url)
+        res.raise_for_status()
         self.soup = BeautifulSoup(res.text, features="html.parser")
         self.log(self.header)
 
         problems = self.get_problem()
         self.problem_num = len(problems)
+        self.log(self.brief(self.problem_num))
 
         print(f"find {self.problem_num} problem")
 
